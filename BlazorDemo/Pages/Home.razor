@@ -3,8 +3,37 @@
 <PageTitle>Home</PageTitle>
 
 <h1>Hello, world!</h1>
+<br />
 
+<DxButton RenderStyle="ButtonRenderStyle.Secondary" Text="SHOW A TOAST" Click="AddToast" />
+<DxToastProvider Name="Customization"
+                 MaxToastCount="3"
+                 VerticalAlignment="@VerticalAlignment"
+                 AnimationType="@Animation" />
+<br />
+<br />
 <DxCalendar @bind-SelectedDate="@SelectedDate" />
+
 @code {
     DateTime SelectedDate { get; set; } = DateTime.Today;
+
+    [Inject] IToastNotificationService? ToastService { get; set; }
+    static ToastAnimationType[] AnimationSource { get; set; } = Enum.GetValues<ToastAnimationType>();
+    static ToastRenderStyle[] RenderModeSource { get; set; } = Enum.GetValues<ToastRenderStyle>();
+    static ToastThemeMode[] ThemeModeSource { get; set; } = Enum.GetValues<ToastThemeMode>();
+    VerticalEdge VerticalAlignment { get; set; } = VerticalEdge.Top;
+    ToastRenderStyle RenderStyle { get; set; } = ToastRenderStyle.Primary;
+    ToastThemeMode ThemeMode { get; set; } = ToastThemeMode.Auto;
+    ToastAnimationType Animation { get; set; } = ToastAnimationType.Slide;
+    private void AddToast()
+    {
+        ToastService?.ShowToast(new ToastOptions
+            {
+                ProviderName = "Customization",
+                Title = "Notification title",
+                Text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit,...",
+                ThemeMode = ThemeMode,
+                RenderStyle = RenderStyle,
+            });
+    }
 }
