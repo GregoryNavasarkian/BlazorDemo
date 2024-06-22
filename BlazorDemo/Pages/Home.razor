@@ -1,0 +1,10 @@
+﻿@page "/"
+
+<PageTitle>Home</PageTitle>
+
+<h1>Hello, world!</h1>
+
+<DxCalendar @bind-SelectedDate="@SelectedDate" />
+@code {
+    DateTime SelectedDate { get; set; } = DateTime.Today;
+}

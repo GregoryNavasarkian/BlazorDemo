@@ -1,0 +1,16 @@
+﻿@inherits LayoutComponentBase
+
+<nav class="card p-2">
+    <DxMenu Title="DevExpress"
+            ItemsPosition="ItemPosition.Start">
+        <Items>
+            <DxMenuItem Text="Home" NavigateUrl="/" IconUrl="images/icons/home.svg" BeginGroup="true" />
+            <DxMenuItem Text="Schedule" NavigateUrl="/schedule" IconUrl="images/icons/calendar.svg" />
+            <DxMenuItem Text="Grid" NavigateUrl="/grid" IconUrl="images/icons/filter.svg" />
+        </Items>
+    </DxMenu>
+</nav>
+
+<div class="content px-4 py-1">
+    @Body
+</div>
